@@ -1,18 +1,17 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
-public class PalindromeChecker {
+public class Solution {
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter a string: ");
-        String input = scanner.next();
+        Scanner sc = new Scanner(System.in);
+        String A = sc.next();
         
-        String result = isPalindrome(input) ? "Yes" : "No";
+        String result = isPalindrome(A) ? "Yes" : "No";
         System.out.println(result);
-
-        scanner.close();
     }
-        private static boolean isPalindrome(String str) {
+    
+    private static boolean isPalindrome(String str) {
         int length = str.length();
         for (int i = 0; i < length / 2; i++) {
             if (str.charAt(i) != str.charAt(length - i - 1)) {
