@@ -6,17 +6,23 @@ public class DuplicateWords {
 
     public static void main(String[] args) {
 
-        String regex = "\\b(\\w+)(\\s+\\1\\b)+";
+        String regex = "\\b(\\w+)(\\s+\\b\\1\\b)+";
         Pattern p = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+
         Scanner in = new Scanner(System.in);
         int numSentences = Integer.parseInt(in.nextLine());
+
         while (numSentences-- > 0) {
             String input = in.nextLine();
             Matcher m = p.matcher(input);
+            StringBuffer result = new StringBuffer();
+
             while (m.find()) {
-                input = input.replaceAll("\\b" + m.group(1) + "\\b", m.group(1));
+                m.appendReplacement(result, m.group(1));
             }
-            System.out.println(input);
+            m.appendTail(result);
+
+            System.out.println(result.toString());
         }
 
         in.close();
